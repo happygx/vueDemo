@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <ul id="example">
+        <li v-for="(item, index) in items" :key="item.id">
+            <p>id:{{ item.id }}</p>
+            {{ parentMessage }} - {{ index }} - {{ item.message }}
+        </li>
+    </ul>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+        var example = new Vue({
+            el: '#example',
+            data: {
+                parentMessage: 'Parent',
+                items: [{
+                        id: 0,
+                        message: 'Foo'
+                    },
+                    {
+                        id: 1,
+                        message: 'Bar'
+                    }
+                ]
+            }
+        })
+        example.items = example.items.filter(function (item) {
+            return item.message.match(/Foo/);
+        });
+
+        example.$set(example.items, 1, {
+            id: 1,
+            message: 'Jack'
+        });
+        
+        example.items = Object.assign({}, example.items, [,,{
+            id: 2,
+            message: 'Green'
+        }])
+        
+    </script>
+</body>
+
+</html>

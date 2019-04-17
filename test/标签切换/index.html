@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="dynamic-component-demo" class="demo">
+        <button v-for="tab in tabs" :key="tab" :class="['tab-button', { active: currentTab === tab }]"
+            @click="currentTab = tab">{{ tab }}</button>
+
+        <component :is="currentTabComponent" class="tab"></component>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="a.js"></script>
+</body>
+
+</html>
